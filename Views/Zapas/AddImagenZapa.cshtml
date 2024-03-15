@@ -1,0 +1,48 @@
+﻿@model List<Zapas>;
+
+<div class="container mt-5">
+    <h1 class="mb-4">Insertar Imágenes a Zapa</h1>
+
+    <form method="post" class="mb-5">
+        <div class="row mb-3">
+            <label for="idzapa" class="col-sm-2 col-form-label">Zapatilla:</label>
+            <div class="col-sm-10">
+                <select id="idzapa" name="idzapa" class="form-select">
+                    @foreach (var zapa in Model)
+                    {
+                        <option value="@zapa.IdProducto">
+                            @zapa.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div id="imagenes-container">
+            <div class="row mb-3">
+                <label for="imagen0" class="col-sm-2 col-form-label">Imagen:</label>
+                <div class="col-sm-8">
+                    <input type="text" id="imagen0" name="imagenes[0]" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="agregarInput()">Añadir imagen</button>
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </form>
+</div>
+
+<script>
+    var contador = 1;
+
+    function agregarInput() {
+        var html = `
+                    <div class="row mb-3">
+                        <label for="imagen${contador}" class="col-sm-2 col-form-label">Imagen:</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="imagen${contador}" name="imagenes[${contador}]" class="form-control" />
+                        </div>
+                    </div>
+                `;
+        document.getElementById("imagenes-container").insertAdjacentHTML("beforeend", html);
+        contador++;
+    }
+</script>

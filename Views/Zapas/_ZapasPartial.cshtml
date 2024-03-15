@@ -1,0 +1,41 @@
+﻿@model List<ImagenesZapas>
+
+@if (ViewData["POSICION"] != null && ViewData["ULTIMO"] != null)
+{
+    <h3 class="mt-3">
+        Zapatilla @ViewData["POSICION"] de @ViewData["ULTIMO"]
+    </h3>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <button onclick="loadZapaPaginacion(1)" class="btn">
+                Primero
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapaPaginacion(@ViewData["ANTERIOR"])" class="btn">
+                Anterior
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapaPaginacion(@ViewData["SIGUIENTE"])" class="btn">
+                Siguiente
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button onclick="loadZapaPaginacion(@ViewData["ULTIMO"])" class="btn">
+                Último
+            </button>
+        </li>
+    </ul>
+
+    @foreach (var imagen in Model)
+    {
+
+        <img src="@imagen.Imagen" style="width:200px" />
+    }
+
+}
+else
+{
+    <h2>No existen registros para esta zapatilla</h2>
+}

@@ -1,0 +1,16 @@
+﻿@model List<Zapas>
+
+<h1>
+    Zapas
+</h1>
+
+<ul>
+    @foreach (var zapa in Model)
+    {
+        <li>
+            <a asp-controller="Zapas" asp-action="Details" asp-route-idzapa="@zapa.IdProducto">
+                @zapa.Nombre
+            </a>
+        </li>
+    }
+</ul>

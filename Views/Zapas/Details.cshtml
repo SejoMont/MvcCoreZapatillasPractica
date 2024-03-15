@@ -1,0 +1,21 @@
+﻿@model Zapas
+<h1>
+    @Model.Nombre
+</h1>
+<div id="detailsContainer"></div>
+<div id="fotosContainer"></div>
+
+@section Scripts {
+    <script>
+        $.get('@Url.Action("_DetallesZapaPartial", "Zapas")', { idzapa: @Model.IdProducto}, function (data) {
+            $('#detailsContainer').html(data);
+        });
+        function loadZapaPaginacion(posicion) {
+            $.get('@Url.Action("_ZapasPartial", "Zapas")', { posicion: posicion, idZapa: @Model.IdProducto }, function (data) {
+                $('#fotosContainer').html(data);
+            });
+        }
+        loadZapaPaginacion(1);
+    </script>
+
+}
